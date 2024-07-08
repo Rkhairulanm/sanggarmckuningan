@@ -1,5 +1,11 @@
 <footer id="footer" class="footer dark-background">
-
+    @php
+        $instagram = \App\Models\Info::where('type', 'Instagram')->first();
+        $phone = \App\Models\Info::where('type', 'Phone Number')->first();
+        $email = \App\Models\Info::where('type', 'Email')->first();
+        $address = \App\Models\Info::where('type', 'Address')->first();
+        $youtube = \App\Models\Info::where('type', 'Youtube')->first();
+    @endphp
     <div class="footer-top">
         <div class="container">
             <div class="row gy-4">
@@ -11,34 +17,34 @@
                         <div class="d-flex">
                             <p class="me-3"><strong>Lokasi </strong></p>
                             <p>
-                                Gedung Daarul Adzkar - Jl. Pramuka Lingk. Kliwon No. 1 Rt. 07 Rw. 03 Kel.
-                                Purwawinangun Kec. Kuningan Kab. Kuningan (Belakang SMPN 6 Kuningan)
+                                {{ $address->content }}
                             </p>
                         </div>
                         <div class="d-flex">
                             <p class="me-3"><strong>Phone </strong></p>
                             <p style="font-family: sans-serif">
-                                +62 899-9008-084
+                                {{ $phone->content }}
                             </p>
                         </div>
                         <div class="d-flex">
                             <p class="me-3"><strong>Email ‎ </strong></p>
                             <p>
-                                sanggarmckuningan@gmail.com
+                                {{ $email->content }}
                             </p>
                         </div>
                     </div>
                     <div class="social-links d-flex mt-4">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                        <a href="https://wa.me/62{{ $phone->content }}" target="_blank"> <i class="bi bi-whatsapp"></i></a>
+                        <a href="{{ $instagram->content }}" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="{{ $youtube->content }}"><i class="bi bi-youtube" target="_blank"></i></a>
+                        <a href="mailto:{{ $email->content }}"><i class="bi bi-envelope" target="_blank"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-12 footer-newsletter">
                     <h4>Berlangganan</h4>
-                    <p>Dapatkan informasi terbaru tentang acara, layanan, dan promosi spesial dari Sanggar MC Kuningan</p>
+                    <p>Dapatkan informasi terbaru tentang acara, layanan, dan promosi spesial dari Sanggar MC Kuningan
+                    </p>
                     <form action="forms/newsletter.php" method="post" class="php-email-form">
                         <div class="newsletter-form">
                             <input type="email" name="email" placeholder="Masukkan email Anda">
@@ -53,7 +59,8 @@
 
     <div class="copyright">
         <div class="container text-center">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Sanggar MC Kuningan</strong> <span>All Rights Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Sanggar MC Kuningan</strong> <span>All Rights
+                    Reserved</span></p>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->

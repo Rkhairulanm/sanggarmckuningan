@@ -14,7 +14,7 @@
                     style="background-image: url({{ asset('assets/img/slide/slide-1.jpg') }})">
                     <div class="carousel-container">
                         <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">Sanggar MC Kuningan</h2>
+                            <h2 class="animate__animated animate__fadeInDown">{!! $heroTitle->content !!}</h2>
                             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
                                 More</a>
                         </div>
@@ -25,7 +25,7 @@
                 <div class="carousel-item" style="background-image: url({{ asset('assets/img/slide/slide-2.jpg') }})">
                     <div class="carousel-container">
                         <div class="container">
-                            <h2 class="animate__animated animate__fadeInDown">Sanggar MC Kuningan</h2>
+                            <h2 class="animate__animated animate__fadeInDown">{!! $heroTitle->content !!}</h2>
                             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read
                                 More</a>
                         </div>
@@ -51,28 +51,10 @@
                 <div class="col-lg-6 order-1 order-lg-2">
                     <img src="assets/img/about.jpg" class="img-fluid" alt="">
                 </div>
-                <div class="col-lg-6 order-2 order-lg-1 content">
-                    <h3>Sanggar MC Kuningan</h3>
-                    <p class="fst-italic">
-                        Selamat Datang Di Website Official Sanggar MC Kuningan
-                    </p>
-                    <p>
-
-                        Sanggar MC Kuningan merupakan wadah kreasi MC untuk berkarya dan mengisi acara-acara sehingga
-                        berkesan dan menyenangkan. Sanggar MC Kuningan hadir sebagai penyedia layanan MC untuk berbagai
-                        macam acara. <br>
-                        <br>
-                        MC adalah profesi yang masih jarang ditekuni oleh orang-orang, sedangkan kebutuhan MC untuk setiap
-                        acara selalu banyak. Padahal kita ketahui bersama bahwa MC memiliki peranan penting dalam
-                        mensukseskan jalannya sebuah acara. <br>
-                        <br>
-                        Untuk itu, kami menginisiasi untuk membuat sebuah jembatan yang menghubungkan rekan-rekan MC dengan
-                        para klien yang membutuhkan jasa MC. <br>
-                        <br>
-                        Selain menyediakan layanan jasa MC professional, Sanggar MC Kuningan pun menjadi wadah bagi
-                        kawan-kawan yang ingin berlatih menjadi MC.
-                    </p>
+                <div class="col-lg-6 order-2 order-lg-1 content" style="font-family: Raleway, sans-serif;">
+                    {!! $aboutSection->content !!}
                 </div>
+
             </div>
 
         </div>
@@ -120,14 +102,15 @@
                                                 <h3>Novi Setia Nurviat</h3>
                                                 <h4>OWNER PT. INOVINDO DIGITAL MEDIA</h4>
                                                 <!-- <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                              class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                          </div> -->
+                                                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                                                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                                                  </div> -->
                                             </div>
                                         </div>
                                         <p>
                                             <i class="bi bi-quote quote-icon-left"></i>
-                                            <span>AMA Bandung berhasil menyelenggarakan acara-acara seminar motivasi yang
+                                            <span>AMA Bandung berhasil menyelenggarakan acara-acara seminar
+                                                motivasi yang
                                                 sangat
                                                 bermanfaat</span>
                                             <i class="bi bi-quote quote-icon-right"></i>
@@ -143,14 +126,15 @@
                                                 <h3>Novi Setia Nurviat</h3>
                                                 <h4>OWNER PT. INOVINDO DIGITAL MEDIA</h4>
                                                 <!-- <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                              class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                          </div> -->
+                                                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                                                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                                                  </div> -->
                                             </div>
                                         </div>
                                         <p>
                                             <i class="bi bi-quote quote-icon-left"></i>
-                                            <span>AMA Bandung berhasil menyelenggarakan acara-acara seminar motivasi yang
+                                            <span>AMA Bandung berhasil menyelenggarakan acara-acara seminar
+                                                motivasi yang
                                                 sangat
                                                 bermanfaat</span>
                                             <i class="bi bi-quote quote-icon-right"></i>
@@ -166,14 +150,15 @@
                                                 <h3>Novi Setia Nurviat</h3>
                                                 <h4>OWNER PT. INOVINDO DIGITAL MEDIA</h4>
                                                 <!-- <div class="stars">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                              class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                          </div> -->
+                                                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                                                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                                                  </div> -->
                                             </div>
                                         </div>
                                         <p>
                                             <i class="bi bi-quote quote-icon-left"></i>
-                                            <span>AMA Bandung berhasil menyelenggarakan acara-acara seminar motivasi yang
+                                            <span>AMA Bandung berhasil menyelenggarakan acara-acara seminar
+                                                motivasi yang
                                                 sangat
                                                 bermanfaat</span>
                                             <i class="bi bi-quote quote-icon-right"></i>

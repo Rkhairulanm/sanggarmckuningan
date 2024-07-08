@@ -4,7 +4,7 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
-            <img src="assets/img/logo.png" class="w-100 rounded-circle" alt="">
+            <img src="/" class="w-100 rounded-circle" alt="">
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -12,8 +12,10 @@
                 <li><a href="/" class=" {{ $title == 'Beranda' ? 'active' : '' }}">Beranda</a></li>
                 <li><a href="/profile" class="{{ $title == 'Profile' ? 'active' : '' }}">Profile
                         MC</a></li>
-                <li><a href="/artikel" class="{{ $title == 'Artikel' ? 'active' : '' }}">Artikel
+                <li><a href="/artikel"
+                        class="{{ in_array($title, ['Artikel', 'Hasil Pencarian', 'Postingan dengan Kategori Terkait']) ? 'active' : '' }}">Artikel
                         MC</a></li>
+
 
                 <li class="dropdown"><a href="#"
                         class="{{ $title == 'Galeri' ? 'active' : '' }}"><span>Galeri</span>

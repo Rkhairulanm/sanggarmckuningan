@@ -16,28 +16,51 @@
     <section id="blog-posts" class="blog-posts section">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Profile</h2>
-            <p>Profile MC</p>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6">
+                    <h2>Artikel</h2>
+                    @if ($title == 'Artikel')
+                        <p>Artikel Terbaru</p>
+                    @elseif($title == 'Hasil Pencarian')
+                        <p>Hasil Pencarian</p>
+                    @endif
+                </div>
+                <div class="col-lg-3">
+                    <!-- Search Widget -->
+                    <div class="search-widget widget-item">
+
+                        <form action="" method="get">
+                            <input type="text" name="keyword">
+                            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                        </form>
+
+                    </div><!--/Search Widget -->
+                </div>
+            </div>
         </div><!-- End Section Title -->
+
 
         <div class="container">
             <div class="row gy-4">
+                @foreach ($artikel as $item)
+                    <div class="col-lg-4">
+                        <article>
 
-                <div class="col-lg-4">
-                    <article>
+                            <div class="post-img position-relative overflow-hidden">
+                                <img src="{{ Storage::url($item->thumbnail) }}" alt=""
+                                    style="object-fit: cover; width: 416px; height: 240px" class="img-fluid">
+                                <span class="post-date">{{ $item->created_at->format('M d, Y') }}</span>
+                            </div>
 
-                        <div class="post-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                        </div>
+                            <p class="post-category">{{ $item->category->name }}</p>
 
-                        <p class="post-category">Politics</p>
+                            <h2 class="title">
+                                <a href="/artikel-detail-{{ $item->slug }}">{{ $item->title }}</a>
+                            </h2>
 
-                        <h2 class="title">
-                            <a href="/artikel-detail">Dolorum optio tempore voluptas dignissimos</a>
-                        </h2>
-
-                    </article>
-                </div><!-- End post list item -->
+                        </article>
+                    </div><!-- End post list item -->
+                @endforeach
 
             </div>
         </div>
@@ -45,22 +68,25 @@
     </section><!-- /Blog Posts Section -->
 
     <!-- Blog Pagination Section -->
-    <section id="blog-pagination" class="blog-pagination section">
 
-        <div class="container">
-            <div class="d-flex justify-content-center">
-                <ul>
-                    <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#" class="active">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li>...</li>
-                    <li><a href="#">10</a></li>
-                    <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="mb-3 container">
+        {{ $artikel->withQueryString()->links() }}
+    </div>
+    <style>
+        .pagination .page-link {
+            background-color: #211f1f !important;
+            color: white !important;
+            border: none !important;
+            outline: none;
+        }
 
-    </section><!-- /Blog Pagination Section -->
+        .pagination .page-link:hover,
+        .pagination .page-item.active .page-link {
+            background-color: #ffc451 !important;
+            color: black !important;
+            border: none !important;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
 @endsection

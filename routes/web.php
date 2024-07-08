@@ -17,10 +17,11 @@ use App\Http\Controllers\ViewController;
 Route::get('/', [ViewController::class, 'index']);
 
 Route::get('/profile', [ViewController::class, 'profile']);
-Route::get('/profile-detail', [ViewController::class, 'profileDetail']);
+Route::get('/profile-detail-{id}', [ViewController::class, 'profileDetail']);
 
 Route::get('/artikel', [ViewController::class, 'artikel']);
-Route::get('/artikel-detail', [ViewController::class, 'artikelDetail']);
+Route::get('/artikel-detail-{slug}', [ViewController::class, 'artikelDetail']);
+Route::get('/category-{slug}', [ViewController::class, 'categories']);
 
 Route::get('/galeri', [ViewController::class, 'galeri']);
 Route::get('/video', [ViewController::class, 'video']);

@@ -16,66 +16,20 @@
     <section id="gallery" class="gallery section">
         <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
             <div class="row gy-4 justify-content-center">
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="gallery-item" style="height: 205px">
-                        <img src="assets/img/thumbnails/thumbnail-1.jpg" style="height: 205px" class="img-fluid"
-                            alt="">
-                        <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="https://www.youtube.com/watch?v=qFLRWShC7BY" title="Blue"
-                                class="glightbox preview-link" data-type="video">
-                                <i class="bi bi-arrows-angle-expand"></i>
-                            </a>
+                @foreach ($video as $k)
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="gallery-item" style="height: 205px">
+                            <img src="{{ Storage::url($k->thumbnail) }}" style="height: 205px" class="img-fluid"
+                                alt="">
+                            <div class="gallery-links d-flex align-items-center justify-content-center">
+                                <a href="{{ $k->content }}" title="{{ $k->title }}"
+                                    class="glightbox preview-link" data-type="video">
+                                    <i class="bi bi-arrows-angle-expand"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </div><!-- End Gallery Item -->
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="gallery-item" style="height: 205px">
-                        <img src="assets/img/thumbnails/thumbnail-1.jpg" style="height: 205px" class="img-fluid"
-                            alt="">
-                        <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="https://www.youtube.com/watch?v=qFLRWShC7BY" title="Blue"
-                                class="glightbox preview-link" data-type="video">
-                                <i class="bi bi-arrows-angle-expand"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div><!-- End Gallery Item -->
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="gallery-item" style="height: 205px">
-                        <img src="assets/img/thumbnails/thumbnail-1.jpg" style="height: 205px" class="img-fluid"
-                            alt="">
-                        <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="https://www.youtube.com/watch?v=qFLRWShC7BY" title="Blue"
-                                class="glightbox preview-link" data-type="video">
-                                <i class="bi bi-arrows-angle-expand"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div><!-- End Gallery Item -->
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="gallery-item" style="height: 205px">
-                        <img src="assets/img/thumbnails/thumbnail-1.jpg" style="height: 205px" class="img-fluid"
-                            alt="">
-                        <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="https://www.youtube.com/watch?v=qFLRWShC7BY" title="Blue"
-                                class="glightbox preview-link" data-type="video">
-                                <i class="bi bi-arrows-angle-expand"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div><!-- End Gallery Item -->
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="gallery-item" style="height: 205px">
-                        <img src="assets/img/thumbnails/thumbnail-1.jpg" style="height: 205px" class="img-fluid"
-                            alt="">
-                        <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="https://www.youtube.com/watch?v=qFLRWShC7BY" title="Blue"
-                                class="glightbox preview-link" data-type="video">
-                                <i class="bi bi-arrows-angle-expand"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div><!-- End Gallery Item -->
+                    </div><!-- End Gallery Item -->
+                @endforeach
             </div>
         </div>
     </section><!-- /Gallery Section -->
