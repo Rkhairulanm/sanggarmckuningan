@@ -27,6 +27,9 @@ Route::get('/galeri', [ViewController::class, 'galeri']);
 Route::get('/video', [ViewController::class, 'video']);
 
 Route::get('/berita', [ViewController::class, 'berita']);
-Route::get('/berita-detail', [ViewController::class, 'beritaDetail']);
+Route::get('/berita-detail-{slug}', [ViewController::class, 'beritaDetail']);
+Route::get('/berita-category-{slug}', [ViewController::class, 'category']);
 
 Route::get('/kontak', [ViewController::class, 'kontak']);
+Route::post('/kontak-send', [ViewController::class, 'kontakSend']);
+Route::post('/subs-send', [ViewController::class, 'subsSend']);

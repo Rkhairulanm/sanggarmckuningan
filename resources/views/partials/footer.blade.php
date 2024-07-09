@@ -14,38 +14,60 @@
                         <span class="sitename" style="color: #ffc451">Sanggar MC Kuningan</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <div class="d-flex">
-                            <p class="me-3"><strong>Lokasi </strong></p>
-                            <p>
-                                {{ $address->content }}
-                            </p>
-                        </div>
-                        <div class="d-flex">
-                            <p class="me-3"><strong>Phone </strong></p>
-                            <p style="font-family: sans-serif">
-                                {{ $phone->content }}
-                            </p>
-                        </div>
-                        <div class="d-flex">
-                            <p class="me-3"><strong>Email ‎ </strong></p>
-                            <p>
-                                {{ $email->content }}
-                            </p>
-                        </div>
+                        @if(isset($address))
+                            <div class="d-flex">
+                                <p class="me-3"><strong>Lokasi </strong></p>
+                                <p>
+                                    {{ $address->content }}
+                                </p>
+                            </div>
+                        @endif
+                        @if(isset($phone))
+                            <div class="d-flex">
+                                <p class="me-3"><strong>Phone </strong></p>
+                                <p style="font-family: sans-serif">
+                                    {{ $phone->content }}
+                                </p>
+                            </div>
+                        @endif
+                        @if(isset($email))
+                            <div class="d-flex">
+                                <p class="me-3"><strong>Email ‎ </strong></p>
+                                <p>
+                                    {{ $email->content }}
+                                </p>
+                            </div>
+                        @endif
                     </div>
                     <div class="social-links d-flex mt-4">
-                        <a href="https://wa.me/62{{ $phone->content }}" target="_blank"> <i class="bi bi-whatsapp"></i></a>
-                        <a href="{{ $instagram->content }}" target="_blank"><i class="bi bi-instagram"></i></a>
-                        <a href="{{ $youtube->content }}"><i class="bi bi-youtube" target="_blank"></i></a>
-                        <a href="mailto:{{ $email->content }}"><i class="bi bi-envelope" target="_blank"></i></a>
+                        @if(isset($phone))
+                            <a href="https://wa.me/62{{ $phone->content }}" target="_blank"> <i
+                                    class="bi bi-whatsapp"></i></a>
+                        @endif
+                        @if(isset($instagram))
+                            <a href="{{ $instagram->content }}" target="_blank"><i class="bi bi-instagram"></i></a>
+                        @endif
+                        @if(isset($youtube))
+                            <a href="{{ $youtube->content }}"><i class="bi bi-youtube" target="_blank"></i></a>
+                        @endif
+                        @if(isset($email))
+                            <a href="mailto:{{ $email->content }}"><i class="bi bi-envelope"
+                                    target="_blank"></i></a>
+                        @endif
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-12 footer-newsletter">
+                    @if (Session::has('status'))
+                        <div class="alert alert-success text-secondary opacity-5" role="alert">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
                     <h4>Berlangganan</h4>
                     <p>Dapatkan informasi terbaru tentang acara, layanan, dan promosi spesial dari Sanggar MC Kuningan
                     </p>
-                    <form action="forms/newsletter.php" method="post" class="php-email-form">
+                    <form action="/subs-send" method="post" class="php-email-form">
+                        @csrf
                         <div class="newsletter-form">
                             <input type="email" name="email" placeholder="Masukkan email Anda">
                             <input type="submit" value="Subscribe">

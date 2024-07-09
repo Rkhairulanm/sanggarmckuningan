@@ -13,7 +13,7 @@
                 <li><a href="/profile" class="{{ $title == 'Profile' ? 'active' : '' }}">Profile
                         MC</a></li>
                 <li><a href="/artikel"
-                        class="{{ in_array($title, ['Artikel', 'Hasil Pencarian', 'Postingan dengan Kategori Terkait']) ? 'active' : '' }}">Artikel
+                        class="{{ in_array($title, ['Artikel', 'Hasil Pencarian Artikel', 'Postingan dengan Kategori Terkait']) ? 'active' : '' }}">Artikel
                         MC</a></li>
 
 
@@ -26,7 +26,9 @@
                         <li><a href="/video">Galeri Video</a></li>
                     </ul>
                 </li>
-                <li><a href="/berita" class="{{ $title == 'Berita' ? 'active' : '' }}">Berita</a></li>
+                <li><a href="/berita"
+                        class="{{ in_array($title, ['Berita', 'Hasil Pencarian Berita', 'Berita dengan Kategori Terkait']) ? 'active' : '' }}">Berita</a>
+                </li>
                 <li><a href="/kontak" class="{{ $title == 'Kontak' ? 'active' : '' }}">Kontak</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

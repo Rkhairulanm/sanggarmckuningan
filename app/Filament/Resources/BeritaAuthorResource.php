@@ -4,24 +4,25 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Author;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\BeritaAuthor;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\AuthorResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\AuthorResource\RelationManagers;
+use App\Filament\Resources\BeritaAuthorResource\Pages;
+use App\Filament\Resources\BeritaAuthorResource\RelationManagers;
 
-class AuthorResource extends Resource
+class BeritaAuthorResource extends Resource
 {
-    protected static ?string $model = Author::class;
+    protected static ?string $model = BeritaAuthor::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
-    protected static ?string $navigationLabel = 'Author Artikel';
+    protected static ?string $navigationLabel = 'Author Berita';
 
-    protected static ?string $navigationGroup = 'Artikel';
+    protected static ?string $navigationGroup = 'Berita';
 
 
     public static function form(Form $form): Form
@@ -29,11 +30,16 @@ class AuthorResource extends Resource
         return $form
             ->schema([
                 Card::make('Author Name')->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
+                    Forms\Components\Grid::make(2)->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\FileUpload::make('authorImage')
+                            ->disk('public')
+                            ->required()
+                            ->directory('authorImage'),
+                    ]),
                 ]),
-
             ]);
     }
 
@@ -41,6 +47,8 @@ class AuthorResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('authorImage')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -56,7 +64,6 @@ class AuthorResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -76,9 +83,9 @@ class AuthorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAuthors::route('/'),
-            'create' => Pages\CreateAuthor::route('/create'),
-            'edit' => Pages\EditAuthor::route('/{record}/edit'),
+            'index' => Pages\ListBeritaAuthors::route('/'),
+            'create' => Pages\CreateBeritaAuthor::route('/create'),
+            'edit' => Pages\EditBeritaAuthor::route('/{record}/edit'),
         ];
     }
 }

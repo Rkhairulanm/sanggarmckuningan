@@ -6,7 +6,7 @@
             <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
                 <div class="col-xl-10">
                     <div class="text-center">
-                        <h3>Nama Artikel</h3>
+                        <h3>{{ $artikel->title }}</h3>
                     </div>
                 </div>
             </div>

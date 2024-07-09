@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Artikel;
+use App\Models\Berita;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -20,18 +20,19 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ArtikelResource\Pages;
+use App\Filament\Resources\BeritaResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ArtikelResource\RelationManagers;
+use App\Filament\Resources\BeritaResource\RelationManagers;
 
-class ArtikelResource extends Resource
+class BeritaResource extends Resource
 {
-    protected static ?string $model = Artikel::class;
+    protected static ?string $model = Berita::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-book-open';
-    protected static ?string $navigationLabel = 'Artikel';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static ?string $navigationLabel = 'Berita';
 
-    protected static ?string $navigationGroup = 'Artikel';
+    protected static ?string $navigationGroup = 'Berita';
+
 
     public static function form(Form $form): Form
     {
@@ -50,7 +51,7 @@ class ArtikelResource extends Resource
                                             ->required()
                                             ->maxLength(255),
                                         Forms\Components\Select::make('category_id')
-                                            ->relationship(name: 'category', titleAttribute: 'name')
+                                            ->relationship('categoryBerita', 'name') // memastikan relationship name dan title attribute
                                             ->searchable()
                                             ->preload()
                                             ->createOptionForm(function ($component) {
@@ -64,17 +65,16 @@ class ArtikelResource extends Resource
                                                 ];
                                             })
                                             ->required(),
-
                                     ])->columns(1)->columnSpan(2), // Kolom pertama, span 2
 
                                     Section::make('Meta')->schema([
                                         FileUpload::make('thumbnail')
                                             ->disk('public')
                                             ->required()
-                                            ->directory('thumbnail')
+                                            ->directory('Berita')
                                             ->columnSpan('full'),
                                         Forms\Components\Select::make('author_id')
-                                            ->relationship(name: 'author', titleAttribute: 'name')
+                                            ->relationship('authorBerita', 'name') // memastikan relationship name dan title attribute
                                             ->searchable()
                                             ->preload()
                                             ->createOptionForm(function ($component) {
@@ -82,9 +82,10 @@ class ArtikelResource extends Resource
                                                     TextInput::make('name')
                                                         ->required()
                                                         ->label('Author Name'),
-                                                    // TextInput::make('slug')
-                                                    //     ->required()
-                                                    //     ->label('Slug'),
+                                                    FileUpload::make('authorImage')
+                                                        ->disk('public')
+                                                        ->required()
+                                                        ->directory('authorImage'),
                                                 ];
                                             })
                                             ->required(),
@@ -108,13 +109,17 @@ class ArtikelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail'),
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
-                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category.name')
+                Tables\Columns\TextColumn::make('author_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('category_id')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('published')
                     ->boolean(),
@@ -151,9 +156,9 @@ class ArtikelResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArtikels::route('/'),
-            'create' => Pages\CreateArtikel::route('/create'),
-            'edit' => Pages\EditArtikel::route('/{record}/edit'),
+            'index' => Pages\ListBeritas::route('/'),
+            'create' => Pages\CreateBerita::route('/create'),
+            'edit' => Pages\EditBerita::route('/{record}/edit'),
         ];
     }
 }

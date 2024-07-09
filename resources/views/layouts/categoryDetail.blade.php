@@ -6,7 +6,11 @@
             <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
                 <div class="col-xl-10">
                     <div class="text-center">
+                        @if (isset($type))
+                        <h3>Berita</h3>
+                        @else
                         <h3>Artikel</h3>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -18,7 +22,11 @@
         <div class="container section-title" data-aos="fade-up">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
+                    @if (isset($type))
+                    <h2>Berita</h2>
+                    @else
                     <h2>Artikel</h2>
+                    @endif
                     <p style="font-size: 30px">{{ $title }}</p>
                 </div>
                 <div class="col-lg-3">
@@ -46,7 +54,11 @@
                                     style="object-fit: cover; width: 416px; height: 240px" class="img-fluid">
                                 <span class="post-date">{{ $item->created_at->format('M d, Y') }}</span>
                             </div>
-                            <p class="post-category">{{ $item->category->name }}</p>
+                            @if (isset($type))
+                                <p class="post-category">{{ $item->categoryBerita->name }}</p>
+                            @else
+                                <p class="post-category">{{ $item->category->name }}</p>
+                            @endif
                             <h2 class="title">
                                 <a href="/artikel-detail-{{ $item->slug }}">{{ $item->title }}</a>
                             </h2>

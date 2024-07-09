@@ -4,35 +4,37 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Author;
+use App\Models\Mitra;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\AuthorResource\Pages;
+use App\Filament\Resources\MitraResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\AuthorResource\RelationManagers;
+use App\Filament\Resources\MitraResource\RelationManagers;
 
-class AuthorResource extends Resource
+class MitraResource extends Resource
 {
-    protected static ?string $model = Author::class;
+    protected static ?string $model = Mitra::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
-    protected static ?string $navigationLabel = 'Author Artikel';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static ?string $navigationLabel = 'Mitra';
 
-    protected static ?string $navigationGroup = 'Artikel';
-
+    protected static ?string $navigationGroup = 'Relation';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Card::make('Author Name')->schema([
-                    Forms\Components\TextInput::make('name')
+                Card::make()->schema([
+                    Forms\Components\TextInput::make('title')
                         ->required()
                         ->maxLength(255),
-                ]),
+                    Forms\Components\FileUpload::make('image')
+                        ->image()
+                        ->required(),
+                ])->columns(2)
 
             ]);
     }
@@ -41,7 +43,8 @@ class AuthorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -56,7 +59,6 @@ class AuthorResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -76,9 +78,9 @@ class AuthorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAuthors::route('/'),
-            'create' => Pages\CreateAuthor::route('/create'),
-            'edit' => Pages\EditAuthor::route('/{record}/edit'),
+            'index' => Pages\ListMitras::route('/'),
+            'create' => Pages\CreateMitra::route('/create'),
+            'edit' => Pages\EditMitra::route('/{record}/edit'),
         ];
     }
 }

@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artikels', function (Blueprint $table) {
+        Schema::create('subs', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail');
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->foreignId('category_id')->constrained()->cascadeondelete();
-            $table->text('content');
-            $table->boolean('published')->default(false);
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artikels');
+        Schema::dropIfExists('subs');
     }
 };
