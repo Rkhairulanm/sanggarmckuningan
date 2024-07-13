@@ -49,13 +49,16 @@ class ViewController extends Controller
     {
         $keyword = $request->get('keyword');
         $title = $keyword ? 'Hasil Pencarian Artikel' : 'Artikel'; // Ubah judul berdasarkan keberadaan keyword
-        $artikel = Artikel::where('title', 'LIKE', '%' . $keyword . '%')
-            ->orWhereHas('category', function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })
+        $artikel = Artikel::where(function ($query) use ($keyword) {
+            $query->where('title', 'LIKE', '%' . $keyword . '%')
+                ->orWhereHas('category', function ($query) use ($keyword) {
+                    $query->where('name', 'LIKE', '%' . $keyword . '%');
+                });
+        })
             ->where('published', true)
-            ->orderBy('created_at', 'desc') // Menambahkan orderBy untuk mengurutkan berdasarkan created_at
+            ->orderBy('created_at', 'desc')
             ->paginate(12);
+
         return view('layouts.artikel', compact('title', 'artikel'));
     }
     public function categories($slug)
@@ -96,12 +99,14 @@ class ViewController extends Controller
         $title = 'Berita';
         $keyword = $request->get('keyword');
         $title = $keyword ? 'Hasil Pencarian Berita' : 'Berita'; // Ubah judul berdasarkan keberadaan keyword
-        $berita = Berita::where('title', 'LIKE', '%' . $keyword . '%')
-            ->orWhereHas('categoryBerita', function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })
+        $berita = Berita::where(function ($query) use ($keyword) {
+            $query->where('title', 'LIKE', '%' . $keyword . '%')
+                ->orWhereHas('categoryBerita', function ($query) use ($keyword) {
+                    $query->where('name', 'LIKE', '%' . $keyword . '%');
+                });
+        })
             ->where('published', true)
-            ->orderBy('created_at', 'desc') // Menambahkan orderBy untuk mengurutkan berdasarkan created_at
+            ->orderBy('created_at', 'desc')
             ->paginate(12);
 
         return view('layouts.berita', compact('title', 'berita'));

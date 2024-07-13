@@ -39,8 +39,7 @@
                                             </div>
                                             </p>
 
-                                            <h3>Saul Goodman</h3>
-                                            <h4>Ceo &amp; Founder</h4>
+                                            
                                             <div class="social-links d-flex mt-4">
                                                 @if ($profile->twitter)
                                                     <a href="{{ $profile->twitter }}"><i class="bi bi-twitter-x"></i></a>
