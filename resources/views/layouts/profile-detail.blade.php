@@ -38,8 +38,6 @@
                                                 <span class="custom-font">{!! $profile->content !!}</span>
                                             </div>
                                             </p>
-
-                                            
                                             <div class="social-links d-flex mt-4">
                                                 @if ($profile->twitter)
                                                     <a href="{{ $profile->twitter }}"><i class="bi bi-twitter-x"></i></a>
