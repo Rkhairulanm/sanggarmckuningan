@@ -33,18 +33,21 @@ class ViewController extends Controller
         $klien = Mitra::get();
         return view('layouts.beranda', compact('title', 'heroTitle', 'aboutSection', 'testimoni', 'klien', 'imageHero1', 'imageHero2', 'aboutImage'));
     }
+
     public function profile()
     {
         $title = 'Profile';
         $profile = Profile::get();
         return view('layouts.profile', compact('title', 'profile'));
     }
+
     public function profileDetail($id)
     {
         $title = 'Profile';
         $profile = Profile::where('id', $id)->firstOrFail();
         return view('layouts.profile-detail', compact('title', 'profile'));
     }
+
     public function artikel(Request $request)
     {
         $keyword = $request->get('keyword');
@@ -61,10 +64,10 @@ class ViewController extends Controller
 
         return view('layouts.artikel', compact('title', 'artikel'));
     }
+
     public function categories($slug)
     {
-        $category = Category::where('slug', $slug)
-            ->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
 
         $title = 'Postingan dengan Kategori Terkait';
         $artikel = Artikel::where('category_id', $category->id)
@@ -74,26 +77,37 @@ class ViewController extends Controller
 
         return view('layouts.categoryDetail', compact('title', 'artikel'));
     }
+
     public function artikelDetail($slug)
     {
         $title = 'Artikel';
         $artikel = Artikel::where('slug', $slug)->firstOrFail();
-        $categories = Category::withCount('artikel')->get();
-        $recentPost = Artikel::orderBy('created_at', 'DESC')->take(12)->get();
+        $categories = Category::withCount(['artikel' => function ($query) {
+            $query->where('published', true);
+        }])->get();
+        $recentPost = Artikel::where('id', '!=', $artikel->id)
+            ->where('published', true)
+            ->orderBy('created_at', 'DESC')
+            ->take(12)
+            ->get();
+
         return view('layouts.artikel-detail', compact('title', 'artikel', 'categories', 'recentPost'));
     }
+
     public function galeri()
     {
         $title = 'Galeri';
         $foto = Gallery::get();
         return view('layouts.galeri', compact('title', 'foto'));
     }
+
     public function video()
     {
         $title = 'Galeri';
         $video = Video::get();
         return view('layouts.video', compact('title', 'video'));
     }
+
     public function berita(Request $request)
     {
         $title = 'Berita';
@@ -111,20 +125,25 @@ class ViewController extends Controller
 
         return view('layouts.berita', compact('title', 'berita'));
     }
+
     public function beritaDetail($slug)
     {
         $title = 'Berita';
         $berita = Berita::where('slug', $slug)->firstOrFail();
-        $categories = BeritaCategory::withCount('berita')->get();
-        $recentPost = Berita::orderBy('created_at', 'DESC')->take(12)->get();
+        $categories = BeritaCategory::withCount(['berita' => function ($query) {
+            $query->where('published', true);
+        }])->get();
+        $recentPost = Berita::where('published', true)
+            ->orderBy('created_at', 'DESC')
+            ->take(12)
+            ->get();
 
         return view('layouts.berita-detail', compact('title', 'berita', 'categories', 'recentPost'));
     }
 
     public function category($slug)
     {
-        $category = BeritaCategory::where('slug', $slug)
-            ->firstOrFail();
+        $category = BeritaCategory::where('slug', $slug)->firstOrFail();
         $type = 'Berita';
         $title = 'Berita dengan Kategori Terkait';
         $artikel = Berita::where('category_id', $category->id)
@@ -134,10 +153,10 @@ class ViewController extends Controller
 
         return view('layouts.categoryDetail', compact('title', 'artikel', 'type'));
     }
+
     public function beritaCategory($slug)
     {
-        $category = Category::where('slug', $slug)
-            ->firstOrFail();
+        $category = Category::where('slug', $slug)->firstOrFail();
 
         $title = 'Postingan dengan Kategori Terkait';
         $artikel = Artikel::where('category_id', $category->id)
@@ -146,6 +165,7 @@ class ViewController extends Controller
 
         return view('layouts.categoryDetail', compact('title', 'artikel'));
     }
+
     public function kontak()
     {
         $title = 'Kontak';
@@ -174,6 +194,7 @@ class ViewController extends Controller
         }
         return redirect('/kontak#kontak');
     }
+
     public function subsSend(Request $request)
     {
         $data = $request->all();

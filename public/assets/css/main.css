@@ -1904,6 +1904,13 @@ section,
     overflow: hidden;
 }
 
+.blog-posts .post-img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
 .blog-posts .post-category {
     font-size: 16px;
     color: color-mix(in srgb, var(--default-color), transparent 40%);
@@ -1941,6 +1948,19 @@ section,
     font-size: 14px;
     color: color-mix(in srgb, var(--default-color), transparent 40%);
     margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .blog-posts .post-img {
+        max-height: none;
+        margin: 0 0 15px 0;
+    }
+
+    .blog-posts .post-img img {
+        object-fit: cover;
+        width: 400px;
+        height: 300px;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -3160,9 +3180,11 @@ section,
     color: color-mix(in srgb, var(--default-color), transparent 60%);
     font-size: 14px;
 }
+
 .custom-font {
     font-family: 'Raleway', sans-serif;
 }
+
 .blog-posts .post-date {
     background-color: var(--accent-color);
     color: var(--contrast-color);

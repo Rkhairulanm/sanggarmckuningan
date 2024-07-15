@@ -19,7 +19,7 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>profileS</h2>
+                <h2>profiles</h2>
                 <p>About {{ $profile->name }}</p>
             </div><!-- End Section Title -->
 
@@ -35,23 +35,29 @@
                                         <div class="profile-content ">
                                             <p>
                                             <div class="custom-font">
-                                                <span class="custom-font">{!! $profile->content !!}</span>
+                                                <h3><strong>{{ $profile->name }}</strong></h3>
+                                                <p>{{ $profile->tag }}</p>
+                                                <div class="social-links d-flex my-3">
+                                                    @if ($profile->twitter)
+                                                        <a href="{{ $profile->twitter }}"><i
+                                                                class="bi bi-twitter-x"></i></a>
+                                                    @endif
+                                                    @if ($profile->facebook)
+                                                        <a href="{{ $profile->facebook }}"><i
+                                                                class="bi bi-facebook"></i></a>
+                                                    @endif
+                                                    @if ($profile->instagram)
+                                                        <a href="{{ $profile->instagram }}"><i
+                                                                class="bi bi-instagram"></i></a>
+                                                    @endif
+                                                    @if ($profile->linkedin)
+                                                        <a href="{{ $profile->linkedin }}"><i
+                                                                class="bi bi-linkedin"></i></a>
+                                                    @endif
+                                                </div>
+                                                <span>{!! $profile->content !!}</span>
                                             </div>
                                             </p>
-                                            <div class="social-links d-flex mt-4">
-                                                @if ($profile->twitter)
-                                                    <a href="{{ $profile->twitter }}"><i class="bi bi-twitter-x"></i></a>
-                                                @endif
-                                                @if ($profile->facebook)
-                                                    <a href="{{ $profile->facebook }}"><i class="bi bi-facebook"></i></a>
-                                                @endif
-                                                @if ($profile->instagram)
-                                                    <a href="{{ $profile->instagram }}"><i class="bi bi-instagram"></i></a>
-                                                @endif
-                                                @if ($profile->linkedin)
-                                                    <a href="{{ $profile->linkedin }}"><i class="bi bi-linkedin"></i></a>
-                                                @endif
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 text-center my-auto">
