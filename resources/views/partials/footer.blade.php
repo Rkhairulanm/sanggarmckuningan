@@ -82,7 +82,7 @@
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Sanggar MC Kuningan</strong> <span>All Rights
                     Reserved</span></p>
             <div class="credits">
-                Designed by Rkhairulanm
+                Designed by Inovindo
             </div>
         </div>
     </div>
