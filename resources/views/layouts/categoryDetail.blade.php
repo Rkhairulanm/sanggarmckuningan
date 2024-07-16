@@ -21,7 +21,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-2">
                     @if (isset($type))
                         <h2>Berita</h2>
                     @else

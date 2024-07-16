@@ -17,7 +17,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-2" >
                     <h2>Artikel</h2>
                     @if ($title == 'Artikel')
                         <p>Artikel Terbaru</p>
