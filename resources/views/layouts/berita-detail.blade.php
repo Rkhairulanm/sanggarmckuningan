@@ -58,7 +58,7 @@
                                 <i class="bi bi-folder"></i>
                                 <ul class="cats">
                                     <li><a
-                                            href="/category-{{ $berita->categoryBerita->name }}">{{ $berita->categoryBerita->name }}</a>
+                                            href="/berita-category-{{ $berita->categoryBerita->name }}">{{ $berita->categoryBerita->name }}</a>
                                     </li>
                                 </ul>
                             </div><!-- End meta bottom -->
@@ -76,7 +76,7 @@
                         <ul>
                             @foreach ($categories as $category)
                                 @if ($category->berita_count != 0)
-                                    <li><a href="/category-{{ $category->slug }}">{{ $category->name }}
+                                    <li><a href="/berita-category-{{ $category->slug }}">{{ $category->name }}
                                             ({{ $category->berita_count }})
                                         </a></li>
                                 @endif

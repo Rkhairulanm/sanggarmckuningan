@@ -7,9 +7,9 @@
                 <div class="col-xl-10">
                     <div class="text-center">
                         @if (isset($type))
-                        <h3>Berita</h3>
+                            <h3>Berita</h3>
                         @else
-                        <h3>Artikel</h3>
+                            <h3>Artikel</h3>
                         @endif
                     </div>
                 </div>
@@ -23,9 +23,9 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6">
                     @if (isset($type))
-                    <h2>Berita</h2>
+                        <h2>Berita</h2>
                     @else
-                    <h2>Artikel</h2>
+                        <h2>Artikel</h2>
                     @endif
                     <p style="font-size: 30px">{{ $title }}</p>
                 </div>
@@ -60,7 +60,11 @@
                                 <p class="post-category">{{ $item->category->name }}</p>
                             @endif
                             <h2 class="title">
-                                <a href="/artikel-detail-{{ $item->slug }}">{{ $item->title }}</a>
+                                @if (isset($type))
+                                    <a href="/berita-detail-{{ $item->slug }}">{{ $item->title }}</a>
+                                @else
+                                    <a href="/artikel-detail-{{ $item->slug }}">{{ $item->title }}</a>
+                                @endif
                             </h2>
                         </article>
                     </div><!-- End post list item -->

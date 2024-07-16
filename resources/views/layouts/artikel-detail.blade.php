@@ -58,7 +58,7 @@
                                 <i class="bi bi-folder"></i>
                                 <ul class="cats">
                                     <li><a
-                                            href="/category-{{ $artikel->category->name }}">{{ $artikel->category->name }}</a>
+                                            href="/category-{{ $artikel->category->slug }}">{{ $artikel->category->name }}</a>
                                     </li>
                                 </ul>
                             </div><!-- End meta bottom -->

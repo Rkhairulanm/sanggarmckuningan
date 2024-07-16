@@ -71,7 +71,8 @@
                             {{ Session::get('message') }}
                         </div>
                     @endif
-                    <form action="/kontak-send" method="post" role="form" class="php-email-form">
+                    <form action="/kontak-send" method="post" role="form" class="php-email-form" data-aos="fade-up"
+                        data-aos-delay="300">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 form-group">
